@@ -1,7 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
+group('edmt.dev')
+version('1.0')
 
 android {
     compileSdk 31
