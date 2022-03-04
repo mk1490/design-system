@@ -14,8 +14,8 @@
         <attr name="backgroundColor" />
     </declare-styleable>
     <declare-styleable name="Toolbar">
-        <attr name="android:title" />
-        <attr name="android:description" />
+        <attr name="title" format="string" />
+        <attr name="description" format="string" />
         <attr name="backgroundColor" />
     </declare-styleable>
 </resources>
