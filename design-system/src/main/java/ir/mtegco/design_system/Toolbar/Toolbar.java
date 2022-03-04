@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import ir.mtegco.design_system.R;
 
 public class Toolbar extends RelativeLayout {
@@ -47,6 +46,7 @@ public class Toolbar extends RelativeLayout {
         }
         if (typedArray.hasValue(R.styleable.Toolbar_android_description)) {
             description.setText(typedArray.getString(R.styleable.Toolbar_android_description));
+            description.setVisibility(VISIBLE);
         }
         if (onBackClickListener != null) {
             back.setVisibility(VISIBLE);
