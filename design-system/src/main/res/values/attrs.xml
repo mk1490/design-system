@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="typefaces" format="enum">
+        <enum name="BTitr" value="1" />
+        <enum name="BYekan" value="2" />
+        <enum name="BTraffic" value="3" />
+        <enum name="BTrafficBold" value="4" />
+        <enum name="BZarBold" value="5" />
+    </attr>
+    <attr name="backgroundColor" format="color" />
     <declare-styleable name="Button">
         <attr name="android:text" />
         <attr name="cornerRadius" format="dimension" />
-        <attr name="backgroundColor" format="color" />
+        <attr name="backgroundColor" />
+    </declare-styleable>
+    <declare-styleable name="Toolbar">
+        <attr name="android:title" />
+        <attr name="android:description" />
+        <attr name="backgroundColor" />
     </declare-styleable>
 </resources>
