@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -20,7 +23,8 @@
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:src="@drawable/ic_arrow_forward_ios" />
+                android:src="@drawable/ic_arrow_forward_ios"
+                app:tint="?attr/colorOnPrimary" />
         </RelativeLayout>
 
         <LinearLayout
@@ -35,14 +39,15 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="12sp"
                 android:visibility="gone" />
         </LinearLayout>
