@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.balysv.materialripple.MaterialRippleLayout;
 
 import io.github.florent37.shapeofview.shapes.RoundRectView;
+import ir.mtegco.design_system.Typefaces.TypefaceHandler;
 
 public class Button extends RelativeLayout {
     OnClickListener onClickListener;
@@ -44,23 +46,27 @@ public class Button extends RelativeLayout {
     }
 
     private void init(AttributeSet attrs) {
-        View view = inflate(getContext(), R.layout.designsystem_button, null);
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.Button);
-        setupViews(view);
-        if (typedArray.hasValue(R.styleable.Button_android_text)) {
-            title.setText(typedArray.getString(R.styleable.Button_android_text));
-        }
-        setBackgroundColor(Color.parseColor("#43A047"));
-        setCorner(typedArray.getInt(R.styleable.Button_android_text, 10));
-        materialRippleLayout.setBackgroundColor(typedArray.getColor(R.styleable.Button_backgroundColor, Color.parseColor("#f44344")));
-        materialRippleLayout.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onClickListener != null) {
-                    onClickListener.onClick(view);
-                }
+        try {
+            View view = inflate(getContext(), R.layout.designsystem_button, null);
+            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.Button);
+            setupViews(view);
+            if (typedArray.hasValue(R.styleable.Button_android_text)) {
+                title.setText(typedArray.getText(R.styleable.Button_android_text));
             }
-        });
+            title.setTypeface(TypefaceHandler.getTypeface(getContext(), typedArray.getInt(R.styleable.Button_typefaces, TypefaceHandler.BTraffic)));
+            setCorner(typedArray.getInt(R.styleable.Button_cornerRadius, 12));
+            materialRippleLayout.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onClickListener != null) {
+                        onClickListener.onClick(view);
+                    }
+                }
+            });
+            addView(view);
+        } catch (Exception e) {
+            Log.e("ERROR", e.getLocalizedMessage());
+        }
     }
 
     private void setupViews(View view) {

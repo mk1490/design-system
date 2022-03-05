@@ -12,6 +12,7 @@
         <attr name="android:text" />
         <attr name="cornerRadius" format="dimension" />
         <attr name="backgroundColor" />
+        <attr name="typefaces" />
     </declare-styleable>
     <declare-styleable name="Toolbar">
         <attr name="title" format="string" />

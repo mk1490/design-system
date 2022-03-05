@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,20 +9,24 @@
         android:id="@+id/roundRectView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@android:color/holo_blue_dark">
+        android:layout_gravity="center">
 
         <com.balysv.materialripple.MaterialRippleLayout
             android:id="@+id/rippleLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:mrl_rippleAlpha="0.3"
+            app:mrl_rippleBackground="?attr/colorPrimary"
+            app:mrl_rippleColor="@android:color/white"
+            app:mrl_rippleHover="true"
+            app:mrl_rippleRoundedCorners="10dp">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp" />
         </com.balysv.materialripple.MaterialRippleLayout>
     </io.github.florent37.shapeofview.shapes.RoundRectView>
