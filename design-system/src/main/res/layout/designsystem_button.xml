@@ -5,21 +5,22 @@
     android:layout_height="match_parent">
 
 
-    <io.github.florent37.shapeofview.shapes.RoundRectView
+    <androidx.cardview.widget.CardView
         android:id="@+id/roundRectView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/design_default_color_background"
+        app:cardCornerRadius="20dp">
 
-        <com.balysv.materialripple.MaterialRippleLayout
-            android:id="@+id/rippleLayout"
+
+        <RelativeLayout
+            android:id="@+id/clickableLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:mrl_rippleAlpha="0.3"
-            app:mrl_rippleBackground="?attr/colorPrimary"
-            app:mrl_rippleColor="@android:color/white"
-            app:mrl_rippleHover="true"
-            app:mrl_rippleRoundedCorners="10dp">
+            android:layout_gravity="center"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/title"
@@ -28,7 +29,7 @@
                 android:layout_gravity="center"
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp" />
-        </com.balysv.materialripple.MaterialRippleLayout>
-    </io.github.florent37.shapeofview.shapes.RoundRectView>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

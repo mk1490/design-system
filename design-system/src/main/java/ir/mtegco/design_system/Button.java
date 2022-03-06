@@ -2,23 +2,21 @@ package ir.mtegco.design_system;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.balysv.materialripple.MaterialRippleLayout;
+import androidx.cardview.widget.CardView;
 
-import io.github.florent37.shapeofview.shapes.RoundRectView;
 import ir.mtegco.design_system.Typefaces.TypefaceHandler;
 
 public class Button extends RelativeLayout {
     OnClickListener onClickListener;
     TextView title;
-    MaterialRippleLayout materialRippleLayout;
-    RoundRectView roundRectView;
+    RelativeLayout clickableButton;
+    CardView cardView;
 
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
@@ -46,40 +44,37 @@ public class Button extends RelativeLayout {
     }
 
     private void init(AttributeSet attrs) {
-        try {
-            View view = inflate(getContext(), R.layout.designsystem_button, null);
-            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.Button);
-            setupViews(view);
-            if (typedArray.hasValue(R.styleable.Button_android_text)) {
-                title.setText(typedArray.getText(R.styleable.Button_android_text));
-            }
-            title.setTypeface(TypefaceHandler.getTypeface(getContext(), typedArray.getInt(R.styleable.Button_typefaces, TypefaceHandler.BTraffic)));
-            setCorner(typedArray.getInt(R.styleable.Button_cornerRadius, 12));
-            materialRippleLayout.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (onClickListener != null) {
-                        onClickListener.onClick(view);
-                    }
-                }
-            });
-            addView(view);
-        } catch (Exception e) {
-            Log.e("ERROR", e.getLocalizedMessage());
+        View view = inflate(getContext(), R.layout.designsystem_button, null);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.Button);
+        setupViews(view);
+        if (typedArray.hasValue(R.styleable.Button_android_text)) {
+            title.setText(typedArray.getText(R.styleable.Button_android_text));
         }
+        title.setTypeface(TypefaceHandler.getTypeface(getContext(), typedArray.getInt(R.styleable.Button_typefaces, TypefaceHandler.BTraffic)));
+        setCorner(typedArray.getInt(R.styleable.Button_cornerRadius, 12));
+        {
+            TypedValue typedValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true);
+            clickableButton.setBackgroundColor(typedArray.getColor(R.styleable.Button_backgroundColor, getResources().getColor(typedValue.resourceId)));
+        }
+        clickableButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onClickListener != null) {
+                    onClickListener.onClick(view);
+                }
+            }
+        });
+        addView(view);
     }
 
     private void setupViews(View view) {
         title = (TextView) view.findViewById(R.id.title);
-        materialRippleLayout = view.findViewById(R.id.rippleLayout);
-        roundRectView = view.findViewById(R.id.roundRectView);
+        clickableButton = (RelativeLayout) view.findViewById(R.id.clickableLayout);
+        cardView = (CardView) view.findViewById(R.id.roundRectView);
     }
 
     public void setCorner(int radius) {
-        roundRectView.setBottomLeftRadius(radius);
-        roundRectView.setBottomRightRadius(radius);
-        roundRectView.setTopLeftRadius(radius);
-        roundRectView.setTopRightRadius(radius);
+        cardView.setRadius(radius);
     }
-
 }
